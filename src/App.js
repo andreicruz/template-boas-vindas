@@ -7,6 +7,18 @@ import './teste.css';
 import html2canvas from 'html2canvas';
 
 class AdicionaCarta extends Component {
+	state = {
+		count: 1
+	};
+	
+	handleClick = () => {
+		this.setState(({ count }) => ({
+		  count: count + 1
+		}));
+
+		this.montaCarta();
+	};
+
  	montaCarta() {
 		const element = (
 			<div className="carta carta--azul">
@@ -34,10 +46,10 @@ class AdicionaCarta extends Component {
 		// html2canvas(document.querySelector(".app")).then(canvas => {
 		// 	document.body.appendChild(canvas)
 		// });
-	  }
+	}
 	  
   	render() {
-		return <button onClick={this.montaCarta}>Click Me</button>
+		return <button onClick={this.handleClick}>Adicionar Carta</button>;
   	}
 }
 
@@ -53,6 +65,8 @@ function App() {
 				<div className="ibm"><img src={logoIBM} alt="Logo Sicredi" /></div>
 			</div>
 			<div id="template"></div>
+			{/* Achar foram de concatenar o count do Adicionar Carta */}
+			{/* <div id={'template' + AdicionaCarta.count}> </div> */}
 			<AdicionaCarta/>
 		</div>
     </div>
