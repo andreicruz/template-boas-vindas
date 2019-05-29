@@ -1,20 +1,24 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap");
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Serif:400,700&display=swap");
-.app .form-control {
+.app .carta #nomeFuncionario, .app .carta #nomePadrinho {
+  letter-spacing: 4px;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  white-space: nowrap; }
+.app .carta #nomeFuncionario {
+  font-size: 20px; }
+.app .carta #nomePadrinho {
+  font-size: 18px; }
+.app .carta--azul .form-control {
   background-color: #1f70c1;
   border: 1px solid #1f70c1;
   color: white;
   padding: 0px; }
-  .app .form-control::placeholder {
+  .app .carta--azul .form-control::placeholder {
     color: white; }
-.app #nomeFuncionario, .app #nomePadrinho {
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  white-space: nowrap; }
-.app #nomeFuncionario {
-  font-size: 20px; }
-.app #nomePadrinho {
-  font-size: 18px; }
+.app .carta--branca .form-control {
+  background-color: white;
+  border: 1px solid white; }
 
 .app {
   margin: auto;
@@ -41,8 +45,6 @@
       padding-right: 15px;
       text-align: right; }
   .app .carta {
-    background-color: #1f70c1;
-    color: white;
     display: flex; }
     .app .carta .informacoes {
       flex: 1;
@@ -65,5 +67,11 @@
         .app .carta .foto .perfil img {
           border-radius: 50%;
           width: 40%; }
+  .app .carta--azul {
+    background-color: #1f70c1;
+    color: white; }
+  .app .carta--branca {
+    background-color: white;
+    color: black; }
 
 /*# sourceMappingURL=teste.css.map */
