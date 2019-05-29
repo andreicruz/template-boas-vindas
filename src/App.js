@@ -41,7 +41,7 @@ class AdicionaCarta extends Component {
 				</div>
 			</div>	
 		);
-		ReactDOM.render(element, document.getElementById('template'));
+		ReactDOM.render(element, document.getElementById('template-' + this.state.count));
 
 		// html2canvas(document.querySelector(".app")).then(canvas => {
 		// 	document.body.appendChild(canvas)
@@ -54,23 +54,26 @@ class AdicionaCarta extends Component {
 }
 
 function App() {
-  return (
-    <div className="container">
-		<div className="app" id="aplicacao">
-			<div className="cabecalho">
-				<h1>Bem Vindo</h1>
+	var p = new AdicionaCarta();
+	console.log(p.state.count);
+
+	return (
+		<div className="container">
+			<div className="app" id="aplicacao">
+				<div className="cabecalho">
+					<h1>Bem Vindo</h1>
+				</div>
+				<div className="logo">
+					<div className="sicredi"><img src={logo} alt="Logo Sicredi" /></div>
+					<div className="ibm"><img src={logoIBM} alt="Logo Sicredi" /></div>
+				</div>
+				{/* <div id="template"></div> */}
+				{/* Achar foram de concatenar o count do Adicionar Carta */}
+				<div id={'template-' + p.state.count}> </div>
+				<AdicionaCarta/>
 			</div>
-			<div className="logo">
-				<div className="sicredi"><img src={logo} alt="Logo Sicredi" /></div>
-				<div className="ibm"><img src={logoIBM} alt="Logo Sicredi" /></div>
-			</div>
-			<div id="template"></div>
-			{/* Achar foram de concatenar o count do Adicionar Carta */}
-			{/* <div id={'template' + AdicionaCarta.count}> </div> */}
-			<AdicionaCarta/>
 		</div>
-    </div>
-  );
+  	);
 }
 
 export default App;
