@@ -5,43 +5,70 @@ import logoIBM from './IBM.png';
 import henrique from './henrique.jpg';
 import './teste.css';
 import html2canvas from 'html2canvas';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 class AdicionaCarta extends Component {
 	state = {
-		count: 1
+		count: 1,
+		l: []
 	};
 	
 	handleClick = () => {
 		this.setState(({ count }) => ({
-		  count: count + 1
+			count: count + 1
 		}));
 
+		// var templates = document.getElementById('templates').appendChild(document.createElement('div'));
+		// templates.setAttribute('class', 'template-' +  this.state.count);
+		
 		this.montaCarta();
+		
+
+		//this.montaCarta();
+
+		
 	};
 
  	montaCarta() {
+		 let id = "template-" + this.state.count
 		const element = (
-			<div className="carta carta--azul">
-				<div className="informacoes">
-					<div className="nome">
-						<input type="text" className="form-control form-control--azul" id="nomeFuncionario" placeholder="Nome Completo"/>
+			<div key={id}>
+				<div className="carta carta--azul">
+					<div className="informacoes">
+						<div className="nome">
+							<input type="text" className="form-control form-control--azul" id="nomeFuncionario" placeholder="Nome Completo"/>
+						</div>
+						<div className="padrinho">
+							<input type="text" className="form-control form-control--azul" id="nomePadrinho" placeholder="Nome do Padrinho"/>
+						</div>
+						<div className="scrum">
+							<input type="text" className="form-control form-control--azul" id="nomeScrum" placeholder="Nome do Scrum"/>
+						</div>
+						<div className="time">
+							<input type="text" className="form-control form-control--azul" id="nomeSetor" placeholder="Nome do Setor"/>
+						</div>
 					</div>
-					<div className="padrinho">
-						<input type="text" className="form-control form-control--azul" id="nomePadrinho" placeholder="Nome do Padrinho"/>
+					<div className="foto">
+						<div className="perfil"><img src={henrique} alt="Foto" /></div>
 					</div>
-					<div className="scrum">
-						<input type="text" className="form-control form-control--azul" id="nomeScrum" placeholder="Nome do Scrum"/>
-					</div>
-					<div className="time">
-						<input type="text" className="form-control form-control--azul" id="nomeSetor" placeholder="Nome do Setor"/>
-					</div>
-				</div>
-				<div className="foto">
-					<div className="perfil"><img src={henrique} alt="Foto" /></div>
-				</div>
-			</div>	
-		);
-		ReactDOM.render(element, document.getElementById('template-' + this.state.count));
+				</div>	
+			</div>
+		)
+		
+		
+		this.state.l.push(element)
+		console.info(this.state.l)
+		console.info(typeof(element.key))
+		console.info(typeof(element.type))
+		console.info(typeof(element.props))
+		
+		return(
+			<div>{this.state.l}</div>
+		)
+		//ReactDOM.render(this.state.l, document.getElementById("templates"))
+		// return console.log(<div>{ ReactHtmlParser(element) }</div>);
+		
+		//ReactDOM.render(element, document.getElementById('template-' + this.state.count));
 
 		// html2canvas(document.querySelector(".app")).then(canvas => {
 		// 	document.body.appendChild(canvas)
@@ -67,9 +94,9 @@ function App() {
 					<div className="sicredi"><img src={logo} alt="Logo Sicredi" /></div>
 					<div className="ibm"><img src={logoIBM} alt="Logo Sicredi" /></div>
 				</div>
-				{/* <div id="template"></div> */}
+				<div id="templates"></div>
 				{/* Achar foram de concatenar o count do Adicionar Carta */}
-				<div id={'template-' + p.state.count}> </div>
+				{/* <div id={'template-' + p.state.count}> </div> */}
 				<AdicionaCarta/>
 			</div>
 		</div>
