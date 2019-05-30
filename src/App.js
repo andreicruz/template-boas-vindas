@@ -6,6 +6,7 @@ import henrique from './henrique.jpg';
 import './teste.css';
 import html2canvas from 'html2canvas';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactDOMServer from 'react-dom/server';
 
 class AdicionaCarta extends Component {
 	state = {
@@ -18,10 +19,10 @@ class AdicionaCarta extends Component {
 			count: count + 1
 		}));
 
-		// var templates = document.getElementById('templates').appendChild(document.createElement('div'));
+		var templates = document.getElementById('templates');
 		// templates.setAttribute('class', 'template-' +  this.state.count);
 		
-		this.montaCarta();
+		templates.append(this.montaCarta());
 		
 
 		//this.montaCarta();
@@ -30,9 +31,9 @@ class AdicionaCarta extends Component {
 	};
 
  	montaCarta() {
-		 let id = "template-" + this.state.count
+		 let id = this.state.count
 		const element = (
-			<div key={id}>
+			<div key={id} id={"template-" + this.state.count}>
 				<div className="carta carta--azul">
 					<div className="informacoes">
 						<div className="nome">
@@ -62,9 +63,9 @@ class AdicionaCarta extends Component {
 		console.info(typeof(element.type))
 		console.info(typeof(element.props))
 		
-		return(
-			<div>{this.state.l}</div>
-		)
+		var teste = ReactDOMServer.renderToStaticMarkup(this.state.l)
+		return teste
+
 		//ReactDOM.render(this.state.l, document.getElementById("templates"))
 		// return console.log(<div>{ ReactHtmlParser(element) }</div>);
 		
